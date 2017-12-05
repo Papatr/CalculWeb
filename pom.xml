@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fr.univ.nantes</groupId>
+  <artifactId>CalculWeb</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>CalculWeb Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- Dependance vers Projet Calcul -->
+    <dependency>
+    	<!-- Nom du groupId dans lequel on souhaite creer une dependance -->
+    	<groupId>fr.univ.nantes</groupId>
+    	
+    	<!--  Nom du artifactId dans lequel on souhaite creer une dependance-->
+    	<artifactId>Calcul</artifactId>
+    	
+    	<!-- Version -->
+    	<version>1.0-SNAPSHOT</version>
+    
+    <!-- A partir de ce moment on depend d'un autre projet -->
+    <!-- Pourque eclipse met a jour le classpath il faudra a nouveau faire appel a mvn eclipse:eclipse -->
+    <!-- Ainsi eclipse pourra lire le fichier pom.xml et mettre a jour le classpath -->
+    </dependency>
+    
+    
+    <!-- Dependances web: Servelt, JSP, JSTL -->
+    
+    <!-- Dependance vers Servlet -->
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>servlet-api</artifactId>
+    	<version>2.5</version>
+    	<scope>provided</scope>
+    </dependency>
+    
+     <!-- Dependance vers JSP -->
+    <dependency>
+    	<groupId>javax.servlet.jsp</groupId>
+    	<artifactId>jsp-api</artifactId>
+    	<version>2.1</version>
+    	<scope>provided</scope>
+    </dependency>
+    
+     <!-- Dependance vers JSTL -->
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>jstl</artifactId>
+    	<version>1.2</version>
+    	<scope>compile</scope>
+    </dependency>
+    
+  </dependencies>
+  <build>
+    <finalName>CalculWeb</finalName>
+    
+    <!-- Ajout du plugin tomcat pour permettre a maven de trouver l'adresse de telechargement du plugin tomcat -->
+    <plugins>
+    	
+    	<!-- Plugin a ajoute -->
+    	<plugin>
+    	
+    		<!-- Declaration du plugin -->
+    		<groupId>org.apache.tomcat.maven</groupId>
+    		
+    		<!-- Nom du plugin -->
+    		<artifactId>tomcat7-maven-plugin</artifactId>
+    		<version>2.3-SNAPSHOT</version>
+    		<configuration>
+    		
+    		<!-- L'adresse qu'on va utiliser pour administrer tomcat -->
+    			<url>http://localhost:8080/manager/text</url>
+    		</configuration>
+    	
+    	</plugin>
+    </plugins>
+  </build>
+  
+  <!-- Serveur que maven doit utiliser pour telecharger les plugins -->
+  <pluginRepositories>
+  	
+  	<!-- Serveur pour telecharger le plugin tomcat -->
+  	<pluginRepository>
+  	<id>apache.snapshots</id>
+  	<name>Apache snapshots</name>
+  	
+  	<!-- Adresse que maven doit utiliser pour telecharger le plugin de tomcat -->
+  	<!-- cad il existe un nouveau serveur central que maven doit utiliser pour telecharger le plugin -->
+  	<url>http://repository.apache.org/content/groups/snapshots-group</url>
+  	
+  	<releases>
+  		<enabled>false</enabled>
+  	</releases>
+  	
+  	<snapshots>
+  		<enabled>true</enabled>
+  	</snapshots>
+  		
+  		
+  	</pluginRepository>
+  
+  </pluginRepositories>
+</project>
